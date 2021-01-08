@@ -150,14 +150,14 @@ else:
 # /CHECK AND WRITE
 # CHECK AND WRITE TERMINALS
 if(len(states)-1==len(terminalTrue)+len(terminalFalse)):
-	out.write('["True"] = new List<string>() {')
+	out.write('["true"] = new List<string>() {')
 	for x in terminalTrue:
 		if terminalTrue.index(x)==len(terminalTrue)-1:
 			out.write('"{0}"'.format(x[0]))
 		else:
 			out.write('"{0}", '.format(x[0]))
 	out.write('},\n \n')
-	out.write('["False"] = new List<string>() {')
+	out.write('["false"] = new List<string>() {')
 	for x in terminalFalse:
 		if terminalFalse.index(x)==len(terminalFalse)-1:
 			out.write('"{0}"'.format(x[0]))
