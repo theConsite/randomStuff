@@ -167,15 +167,10 @@ if(len(states)-1==len(terminalTrue)+len(terminalFalse)):
 
 	print('Terminal: {0}'.format(len(terminalTrue)))
 	print('Non terminal: {0}'.format(len(terminalFalse)))
-	print('============================ \n \n')
-
-
-	
+	print('============================ \n \n')	
 else:
 	print('Sprawdź terminale statusów w xls')
 	print(len(states), len(terminalTrue)+len(terminalFalse))
-
-
 # /TERMINALS
 # CLOSE FILES
 wb.close()
