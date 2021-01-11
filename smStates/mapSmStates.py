@@ -4,8 +4,8 @@ from openpyxl import load_workbook
 wb = load_workbook(filename='StatusyPaczek 07.01.21.xlsx', read_only=True)
 out = codecs.open('output.txt', "w", "utf-8")
 # CONFIG
-worksheetName = 'X-Press Couriers'
-mappedField = 2
+worksheetName = 'InPost Kurier'
+mappedField = 0
 smStatus = 3
 isTerminal = 4
 # /CONFIG
@@ -47,9 +47,9 @@ while (i<len(states)):
 		SM002.append(states[i])
 	if(states[i][1]=="W tranzycie"):
 		SM003.append(states[i])
-	if(states[i][1]=="W doreczeniu" or states[i][1]=="W doręczeniu"):
+	if(states[i][1]=="W doreczeniu" or states[i][1]=="W doręczeniu" or states[i][1]=="Wydana do doręczenia"):
 		SM004.append(states[i])
-	if(states[i][1]=="Awizowana"):
+	if(states[i][1]=="Awizowana" or states[i][1]=="Awizo"):
 		SM005.append(states[i])
 	if(states[i][1]=="Doręczona"):
 		SM006.append(states[i])
@@ -57,7 +57,7 @@ while (i<len(states)):
 		SM007.append(states[i])
 	if(states[i][1]=="Inny"):
 		SM008.append(states[i])
-	if(states[i][1]=="Odmowa przyjęcia przesyłki"):
+	if(states[i][1]=="Odmowa przyjęcia przesyłki" or states[i][1]=="Odmowa przyjęcia"):
 		SM009.append(states[i])
 	if(states[i][2]==True):
 		terminalTrue.append(states[i])
@@ -147,6 +147,9 @@ if(len(states)-1==len(SM001)+len(SM002)+len(SM003)+len(SM004)+len(SM005)+len(SM0
 else:
 	print('Sprawdź nazwy statusów w xls')
 	print(len(states), len(SM001)+len(SM002)+len(SM003)+len(SM004)+len(SM005)+len(SM006)+len(SM007)+len(SM008)+len(SM009))
+	for x in states:
+		if (not(x in SM001) and not(x in SM002) and not(x in SM003) and not(x in SM004) and not(x in SM005) and not(x in SM006) and not(x in SM007) and not(x in SM008) and not(x in SM009)):
+			print(x)
 # /CHECK AND WRITE
 # CHECK AND WRITE TERMINALS
 if(len(states)-1==len(terminalTrue)+len(terminalFalse)):
@@ -171,6 +174,10 @@ if(len(states)-1==len(terminalTrue)+len(terminalFalse)):
 else:
 	print('Sprawdź terminale statusów w xls')
 	print(len(states), len(terminalTrue)+len(terminalFalse))
+	for x in states:
+		if (not(x in terminalTrue) and not(x in terminalFalse)):
+			print(x)
+
 # /TERMINALS
 # CLOSE FILES
 wb.close()
