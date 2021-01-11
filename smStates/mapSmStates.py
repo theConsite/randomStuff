@@ -4,10 +4,10 @@ from openpyxl import load_workbook
 wb = load_workbook(filename='StatusyPaczek 07.01.21.xlsx', read_only=True)
 out = codecs.open('output.txt', "w", "utf-8")
 # CONFIG
-worksheetName = 'UPS Action'
-mappedField = 0
-smStatus = 2
-isTerminal = 3
+worksheetName = 'X-Press Couriers'
+mappedField = 2
+smStatus = 3
+isTerminal = 4
 # /CONFIG
 #PRINTCONFIG
 print('\n \n============================')
@@ -150,14 +150,14 @@ else:
 # /CHECK AND WRITE
 # CHECK AND WRITE TERMINALS
 if(len(states)-1==len(terminalTrue)+len(terminalFalse)):
-	out.write('["true"] = new List<string>() {')
+	out.write('[true] = new List<string>() {')
 	for x in terminalTrue:
 		if terminalTrue.index(x)==len(terminalTrue)-1:
 			out.write('"{0}"'.format(x[0]))
 		else:
 			out.write('"{0}", '.format(x[0]))
 	out.write('},\n \n')
-	out.write('["false"] = new List<string>() {')
+	out.write('[false] = new List<string>() {')
 	for x in terminalFalse:
 		if terminalFalse.index(x)==len(terminalFalse)-1:
 			out.write('"{0}"'.format(x[0]))
